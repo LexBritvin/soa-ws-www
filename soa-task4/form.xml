@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<hero>
+    <name>12312</name>
+    <email>lexbritvin@gmail.com</email>
+    <birthday>1995</birthday>
+    <gender>female</gender>
+    <limbs>4</limbs>
+    <superpowers>
+        <ability>walking through walls</ability>
+        <ability>invisibility</ability>
+    </superpowers>
+    <biography>124</biography>
+</hero>

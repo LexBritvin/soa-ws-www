@@ -1,0 +1,26 @@
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+    <xsd:complexType name='superpowersType'>
+        <xsd:sequence>
+            <xsd:element name='ability' minOccurs='1' maxOccurs='unbounded' type='xsd:string'/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="emailAddress">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="100"/>
+            <xsd:pattern value="[^@]+@[^\.]+\..+"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name='hero'>
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name='name' type='xsd:string'/>
+                <xsd:element name='email' type='emailAddress'/>
+                <xsd:element name='birthday' type='xsd:string'/>
+                <xsd:element name='gender' type='xsd:string'/>
+                <xsd:element name='limbs' type='xsd:string'/>
+                <xsd:element name='superpowers' type='superpowersType'/>
+                <xsd:element name='biography' type='xsd:string'/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

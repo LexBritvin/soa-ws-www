@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
+    <http:request-config name="HTTP_Request_Configuration" host="localhost" port="8080" basePath="/" doc:name="HTTP Request Configuration"/>
+    <http:request-config name="HTTP_Request_Configuration2" host="localhost" port="8080" doc:name="HTTP Request Configuration" basePath="/soa-task5">
+        <http:basic-authentication username="superuser" password="123" preemptive="true"/>
+    </http:request-config>
+    <ws:consumer-config name="Web_Service_Consumer" wsdlLocation="http://localhost:8088/hello?wsdl" service="HelloService" port="HelloPort" serviceAddress="http://localhost:8088/hello" doc:name="Web Service Consumer"/>
+    <http:request-config name="HTTP_Request_Configuration1" host="localhost" port="8080" basePath="/soa-task5" doc:name="HTTP Request Configuration">
+        <http:basic-authentication username="superuser" password="123"/>
+    </http:request-config>
+    <file:connector name="File" autoDelete="true" streaming="true" validateConnections="true" doc:name="File"/>
+    <http:request-builder name="Request_Builder" doc:name="Request Builder">
+        <http:header headerName="Content-Type" value="application/hal+json"/>
+    </http:request-builder>
+    <flow name="soa-task8.1Flow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/soa-task8.1" doc:name="HTTP"/>
+        <dw:transform-message metadata:id="dc1e1c1c-36ba-46c4-9386-262f215f205d" doc:name="Transform Message">
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/xml
+%namespace ns0 http://helloservice/
+---
+{
+	ns0#sayHello: {
+		arg0: payload.name
+	}
+}]]></dw:set-payload>
+        </dw:transform-message>
+        <ws:consumer config-ref="Web_Service_Consumer" doc:name="Web Service Consumer" operation="sayHello"/>
+        <dw:transform-message doc:name="Transform Message" metadata:id="c66fc2f2-aab2-4b84-bda6-61031472ac7a">
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+%namespace ns0 http://helloservice/
+---
+{
+	"_links": {
+		type: {
+			href: "http://localhost:8080/soa-task5/rest/type/node/article"
+		}
+	},
+	title: [{
+		value: payload.ns0#sayHelloResponse.return
+	}]
+}]]></dw:set-payload>
+        </dw:transform-message>
+        <message-properties-transformer mimeType="application/json" doc:name="Message Properties">
+            <add-message-property key="Content-Type" value="application/hal+json"/>
+        </message-properties-transformer>
+        <http:request config-ref="HTTP_Request_Configuration2" path="/entity/node" method="POST" doc:name="HTTP" metadata:id="18af3e31-7587-48de-afa7-2a366d86c3d7">
+            <http:request-builder>
+                <http:query-param paramName="_format" value="hal_json"/>
+            </http:request-builder>
+        </http:request>
+    </flow>
+</mule>

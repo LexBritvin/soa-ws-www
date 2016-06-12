@@ -1,0 +1,9 @@
+<!ELEMENT hero (name, email, birthday, gender, limbs, superpowers, biography)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT birthday (#PCDATA)>
+<!ELEMENT gender (#PCDATA)>
+<!ELEMENT limbs (#PCDATA)>
+<!ELEMENT superpowers (ability+)>
+<!ELEMENT biography (#PCDATA)>
+<!ELEMENT ability (#PCDATA)>

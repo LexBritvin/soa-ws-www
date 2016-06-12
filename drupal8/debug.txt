@@ -1,0 +1,4 @@
+Array
+(
+    [_format] => hal_json
+)

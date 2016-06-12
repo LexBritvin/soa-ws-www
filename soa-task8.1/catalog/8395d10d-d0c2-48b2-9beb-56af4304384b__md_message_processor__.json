@@ -1,0 +1,11 @@
+{
+    "inputMessageMetadata": {},
+    "outputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "Web_Service_Consumer",
+            "typeId": "sayHelloResponse"
+        }
+    },
+    "id": "8395d10d-d0c2-48b2-9beb-56af4304384b",
+    "version": "5.2.0.0"
+}

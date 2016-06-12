@@ -1,0 +1,43 @@
+Array
+(
+    [REDIRECT_protossl] => 
+    [REDIRECT_HTTP_AUTHORIZATION] => 
+    [REDIRECT_STATUS] => 200
+    [protossl] => 
+    [HTTP_AUTHORIZATION] => 
+    [HTTP_HOST] => localhost:8080
+    [HTTP_CONNECTION] => keep-alive
+    [HTTP_CACHE_CONTROL] => max-age=0
+    [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+    [HTTP_USER_AGENT] => Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.63 Safari/537.36
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+    [HTTP_REFERER] => http://localhost:8080/soa-task5/admin/reports
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate, sdch
+    [HTTP_ACCEPT_LANGUAGE] => ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4
+    [HTTP_COOKIE] => SESS7e59a248b06fc04d4e92209eeb225c35=9eKrNXRQDTB-enmaCt--vZXOcEcwAk8ode_8ZYvx9WU
+    [PATH] => /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    [SERVER_SIGNATURE] => <address>Apache/2.4.20 (Ubuntu) Server at localhost Port 8080</address>
+
+    [SERVER_SOFTWARE] => Apache/2.4.20 (Ubuntu)
+    [SERVER_NAME] => localhost
+    [SERVER_ADDR] => 10.0.2.15
+    [SERVER_PORT] => 8080
+    [REMOTE_ADDR] => 10.0.2.2
+    [DOCUMENT_ROOT] => /home/vagrant/www
+    [REQUEST_SCHEME] => http
+    [CONTEXT_PREFIX] => 
+    [CONTEXT_DOCUMENT_ROOT] => /home/vagrant/www
+    [SERVER_ADMIN] => webmaster@localhost
+    [SCRIPT_FILENAME] => /home/vagrant/www/soa-task5/index.php
+    [REMOTE_PORT] => 47018
+    [REDIRECT_URL] => /soa-task5/admin/reports/dblog
+    [GATEWAY_INTERFACE] => CGI/1.1
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [REQUEST_METHOD] => GET
+    [QUERY_STRING] => 
+    [REQUEST_URI] => /soa-task5/admin/reports/dblog
+    [SCRIPT_NAME] => /soa-task5/index.php
+    [PHP_SELF] => /soa-task5/index.php
+    [REQUEST_TIME_FLOAT] => 1464729292.688
+    [REQUEST_TIME] => 1464729292
+)

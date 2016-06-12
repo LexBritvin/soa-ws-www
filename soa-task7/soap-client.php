@@ -13,7 +13,8 @@ $client = new SoapClient($config['url'] . '?wsdl', [
 
 print_r($client->__getFunctions());
 
-// This doesn't work in Drupal 7.
+// This doesn't work in Drupal 7 SOAP Server.
+// Create node.
 //$response = $client->node_soap_create(new ArrayObject([
 //  'type' => 'article',
 //  'status' => 1,
@@ -22,12 +23,14 @@ print_r($client->__getFunctions());
 //]));
 //print_r($response);
 
-$response = $client->node_soap_index(1, 'nid', []);
+// List nodes.
+$response = $client->node_soap_index(1, 'nid', [], 5);
 print_r($response);
 
 $nodes = $response ? reset($response) : FALSE;
 $nodes = $nodes && !is_array($nodes) ? [$nodes] : $nodes;
 if ($nodes) {
+  // Delete the first node.
   $nid = reset($nodes)->nid;
   $response = $client->node_soap_delete(intval($nid));
   var_dump($response);

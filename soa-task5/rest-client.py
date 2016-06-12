@@ -72,7 +72,7 @@ if response.status_code == 201:
     print "nid: ", get_value(node[u'nid'])
     print "Title: ", get_value(node[u'title'])
 
-# Delete las created node.
+# Delete last created node.
 if created_nid:
     response = delete_node(created_nid)
     if response.status_code == 204:

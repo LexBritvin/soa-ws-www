@@ -14,6 +14,7 @@ print "XSD validation result: ", xmlschema.validate(xml), "\n\n"
 dtd = etree.DTD(open('schema.dtd', 'r'))
 print "DTD validation result: ", dtd.validate(xml)
 
+# Parse with XSLT.
 xslt = etree.parse(open('schema.xsl', 'r'))
 transform = etree.XSLT(xslt)
 newdom = transform(xml)

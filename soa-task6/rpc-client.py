@@ -10,9 +10,11 @@ config = {
     'password': '123',
 }
 
+# Predefine global vars for headers.
 session_info = (None, None)
 token = None
 
+# Specify class to add headers to each request.
 class CookieAwareTransport(xmlrpclib.Transport):
     def send_content(self, connection, request_body):
 
@@ -28,7 +30,7 @@ class CookieAwareTransport(xmlrpclib.Transport):
         xmlrpclib.Transport.send_content(self, connection, request_body)
 
 
-# Make initial connection to service, then login as developer
+# Make initial connection to service, then login as developer.
 server = xmlrpclib.ServerProxy(config['url'], transport=CookieAwareTransport())
 connection = server.system.connect()
 session = server.user.login(config['username'], config['password'])
@@ -37,9 +39,8 @@ session_info = (session['session_name'], session['sessid'])
 token = server.user.token()['token']
 user = session['user']
 
-# Create the node object and reference the new fid just created
+# Create the node object.
 timestamp = str(int(time.time()))
-
 node = {
     'type': 'article',
     'status': 1,
@@ -48,8 +49,11 @@ node = {
 }
 
 try:
+    # List all nodes.
     nodes = server.node.index()
+    # Create node.
     n = server.node.create(node)
+    # Delete last created node.
     deleted = server.node.delete(n['nid'])
 
 except xmlrpclib.Fault, err:

@@ -7,16 +7,25 @@ params = {'_format': 'hal_json'}
 
 
 def get_value(drupal_field):
+    """
+    Gets value of a drupal 8 field.
+    """
     return drupal_field[0][u'value']
 
 
 def get_node(nid):
+    """
+    Fetches node by its nid.
+    """
     headers = {'accept': 'application/hal+json'}
     response = requests.get(base_url + "/node/" + str(nid), auth=auth, params=params, headers=headers)
     return response
 
 
 def create_node(data):
+    """
+    Creates node with specified data.
+    """
     headers = {'content-type': 'application/hal+json'}
     response = requests.post(base_url + "/entity/node", auth=auth, params=params, headers=headers,
                              data=json.dumps(data))
@@ -24,11 +33,15 @@ def create_node(data):
 
 
 def delete_node(nid):
+    """
+    Deletes node by its nid.
+    """
     headers = {'content-type': 'application/hal+json'}
     response = requests.delete(base_url + "/node/" + str(nid), auth=auth, params=params, headers=headers)
     return response
 
 
+# Fetch node of nid 1.
 response = get_node(1)
 print "Get node: \n"
 if response.status_code == 200:
@@ -39,6 +52,7 @@ elif response.status_code == '404':
     print "No such node"
 print "\n"
 
+# Create node.
 print "Create node: \n"
 data = {
     "_links": {
@@ -58,6 +72,7 @@ if response.status_code == 201:
     print "nid: ", get_value(node[u'nid'])
     print "Title: ", get_value(node[u'title'])
 
+# Delete last created node.
 if created_nid:
     response = delete_node(created_nid)
     if response.status_code == 204:

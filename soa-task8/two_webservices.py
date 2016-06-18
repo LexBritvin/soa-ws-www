@@ -20,6 +20,7 @@ def get_weather(city):
 
 
 def main():
+    # Get current location by ip.
     response = get_location()
     city = None
     if response.status_code == 200:
@@ -28,6 +29,7 @@ def main():
         print "Город:", city
     print "\n"
 
+    # Get weather in location.
     if city:
         response = get_weather(city)
         if response.status_code == 200:

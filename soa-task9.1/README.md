@@ -6,7 +6,7 @@
 
 Для проверки сервиса я использую расширение для хрома Postman.
 
-## POST /login
+#### POST /login
 Чтобы залогиниться, нужно отправить POST запрос на http://localhost:8080/login.
 Запрос должен содержать x-www-form-urlencoded поля:
 ```
@@ -14,40 +14,40 @@ username=user&password=user
 ```
 Тело запроса пустое.
 
-ПРи успешном логине выдаётся кука со значением сессии.
+При успешном логине выдаётся кука со значением сессии.
 
-## POST /logout
+#### POST /logout
 POST запрос с пустым телом.
 
-## GET /rest/categories
+#### GET /rest/categories
 
 Возвращает все категории без родителей.
 
 Я генерирую 10, 20, 30 итд
 
-## GET /rest/categories/10
+#### GET /rest/categories/10
 
 Возвращает всех детей категории с id 10.
 
 Дети 11-15, 21-25 и т.д.
 
-## GET /rest/products/10
+#### GET /rest/products/10
 
 Возращает все товары в категории 10.
 
-## GET /rest/product/5
+#### GET /rest/product/5
 
 Возращает описание товара.
 
-## GET /rest/orders
+#### GET /rest/orders
 
 Возвращает все заказы текущего пользователя.
 
-## GET /rest/order/2
+#### GET /rest/order/2
 
 Вернёт описание заказа 2
 
-## POST /rest/orders
+#### POST /rest/orders
 
 Создаёт новый заказ.
 После создание редиректит на /rest/order/{order_id}

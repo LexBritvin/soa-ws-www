@@ -166,7 +166,8 @@
 ```
 {
     "order_id": "123",
-    "status": "pending",
+    "status": "pending"
+}
 ```
 
 ### RequestStock
